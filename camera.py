@@ -2,8 +2,10 @@ import cv2
 import requests
 import time
 
+stream_url = 'http://192.168.0.130:81/stream'
+
 # Create a VideoCapture object to access the camera (usually the default camera)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(stream_url)
 
 if not cap.isOpened():
     print("Error: Could not open camera.")
@@ -40,7 +42,7 @@ while True:
 
         # Send the image to the Flask server
         response = requests.post(
-            'http://localhost:5000/upload', files={'image': ('image.jpg', image_bytes)})
+            'http://localhost:5000/upload/1', files={'image': ('image.jpg', image_bytes)})
 
         print(response.json())
 

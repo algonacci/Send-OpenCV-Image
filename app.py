@@ -41,6 +41,7 @@ def compile_video(camera_id):
         output_video_file, fps=30, macro_block_size=1)
 
     for frame in camera_frames[camera_id]:
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         output_video.append_data(frame)
 
     output_video.close()
